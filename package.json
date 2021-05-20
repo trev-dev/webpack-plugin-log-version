@@ -1,0 +1,17 @@
+{
+  "name": "webpack-prepend-version",
+  "version": "0.1.0",
+  "description": "A plugin that injects a version stamp into the top of a project's bundled assets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack",
+    "git",
+    "versioning",
+    "injector"
+  ],
+  "author": "Trevor Richards",
+  "license": "GPL-3.0-or-later"
+}
