@@ -4,48 +4,48 @@ import { prependChunk } from './functions'
 import { PluginModel, PluginOptions } from './types/plugin'
 
 class LogVersionPlugin {
-	defaultModel: PluginModel = {
+  defaultModel: PluginModel = {
     options: {
       template: 'Lets try to "break this"'
     }
   }
-	model: PluginModel
-	name: string = LogVersionPlugin.name
+  model: PluginModel
+  name: string = LogVersionPlugin.name
 
-	constructor(options: PluginOptions) {
-		this.model =  {
-			...this.defaultModel,
-			options: {
-				...this.defaultModel.options,
-				...options
-			}
-		}
-	}
+  constructor(options: PluginOptions) {
+    this.model =  {
+     ...this.defaultModel,
+     options: {
+      ...this.defaultModel.options,
+      ...options
+    }
+  }
+}
 
-	private compilationHook(compilation: Compilation) {
-    compilation.hooks.processAssets.tapAsync(this.name, (_assets, callback) => {
-      const { chunks } = compilation
-      const { ConcatSource } = require('webpack').sources
-      Promise.all(Array.from(chunks).map(prependChunk(this.model)))
-      .then(updates => {
-        const firstJSChunk = updates.find(update => update.extension == 'js')
-        if (firstJSChunk === undefined) return callback()
+private compilationHook(compilation: Compilation) {
+  compilation.hooks.processAssets.tapAsync(this.name, (_assets, callback) => {
+    const { chunks } = compilation
+    const { ConcatSource } = require('webpack').sources
+    Promise.all(Array.from(chunks).map(prependChunk(this.model)))
+    .then(updates => {
+      const firstJSChunk = updates.find(update => update.extension == 'js')
+      if (firstJSChunk === undefined) return callback()
         console.log(firstJSChunk)
-        compilation.updateAsset(
-          firstJSChunk.filename!,
-          old => new ConcatSource(firstJSChunk.content, '\n', old)
+      compilation.updateAsset(
+        firstJSChunk.filename!,
+        old => new ConcatSource(firstJSChunk.content, '\n', old)
         )
-        callback()
-      })
+      callback()
     })
-  }
+  })
+}
 
-  apply(compiler: Compiler) {
-    compiler.hooks.compilation.tap({
-      name: this.name, 
-      stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL 
-    }, (compilation) => this.compilationHook(compilation))
-  }
+apply(compiler: Compiler) {
+  compiler.hooks.compilation.tap({
+    name: this.name, 
+    stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONAL 
+  }, (compilation) => this.compilationHook(compilation))
+}
 }
 
 module.exports = LogVersionPlugin
