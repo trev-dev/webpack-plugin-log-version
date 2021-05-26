@@ -42,8 +42,12 @@ const escapeQuotes = (content: string) => {
   return content.replace(/"/g, '\\"')
 }
 
-const wrapConsoleLog = (content: string) => {
-  return `console.log("${sanitize(content)}");`
+const wrapConsoleLog = (model: PluginModel) => {
+  const { template, color } = model.options
+  const checkedTemplate = template !== undefined ? template 
+    : getTemplate(model).options.template!
+
+  return `console.log("${escapeQuotes(checkedTemplate)}", "color: ${color}");`
 }
 
 const generateLogger = 
