@@ -30,7 +30,6 @@ private compilationHook(compilation: Compilation) {
     .then(updates => {
       const firstJSChunk = updates.find(update => update.extension == 'js')
       if (firstJSChunk === undefined) return callback()
-        console.log(firstJSChunk)
       compilation.updateAsset(
         firstJSChunk.filename!,
         old => new ConcatSource(firstJSChunk.content, '\n', old)
