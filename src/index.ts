@@ -6,11 +6,15 @@ import { PluginModel, PluginOptions } from './types/plugin'
 class LogVersionPlugin {
   defaultModel: PluginModel = {
     options: {
+      git: true,
+      global: false,
+      comment: '',
+      color: '#3bbfbf'
     }
   }
   model: PluginModel
   name: string = LogVersionPlugin.name
-
+  
   constructor(options: PluginOptions) {
     this.model =  {
      ...this.defaultModel,

@@ -1,5 +1,10 @@
 export declare type PluginOptions = {
   template?: string
+  git: boolean
+  global: boolean
+  globalName?: string
+  comment: string
+  color: string
 }
 
 export declare interface PluginModel {
