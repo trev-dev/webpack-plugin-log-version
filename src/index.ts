@@ -1,5 +1,5 @@
 import { Compilation, Compiler } from 'webpack'
-import { prependChunk } from './functions'
+import { prependChunk } from './functions/templating'
 
 import { PluginModel, PluginOptions } from './types/plugin'
 
@@ -7,6 +7,7 @@ class LogVersionPlugin {
   defaultModel: PluginModel = {
     options: {
       git: true,
+      log: true,
       global: false,
       comment: '',
       color: '#3bbfbf'

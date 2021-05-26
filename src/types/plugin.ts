@@ -1,10 +1,12 @@
 export declare type PluginOptions = {
-  template?: string
+  color: string
+  name?: string
+  comment: string
   git: boolean
   global: boolean
   globalName?: string
-  comment: string
-  color: string
+  log: boolean
+  template?: string
 }
 
 export declare interface PluginModel {
@@ -12,4 +14,20 @@ export declare interface PluginModel {
   extension?: string
   content?: string
   options: PluginOptions
+}
+
+export declare interface TemplateVariables extends PluginOptions {
+  branch?: string,
+  commit?: string,
+  date: string,
+  name: string,
+  version: string
+}
+
+export declare interface RenderedTemplate {
+  content: {
+    log: string
+    global: string
+  },
+  name: string
 }
