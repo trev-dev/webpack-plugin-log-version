@@ -1,0 +1,12 @@
+{
+	name: '<%= name %>',
+	version: '<%= version %>',
+	date: '<%= date %>',
+	<% if (git) { %>
+	branch: '<%= branch %>',
+	commit: '<%= commit %>',
+	<% } %>
+	<% if (comment !== '') { %>
+	comment: '<%= comment %>'
+	<% } %> 
+}
