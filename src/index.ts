@@ -28,7 +28,7 @@ private compilationHook(compilation: Compilation) {
     const { ConcatSource } = require('webpack').sources
     Promise.all(Array.from(chunks).map(prependChunk(this.model)))
     .then(updates => {
-      const firstJSChunk = updates.find(update => update.extension == 'js')
+      const firstJSChunk = updates.find(update => update.extension === 'js')
       if (firstJSChunk === undefined) return callback()
       compilation.updateAsset(
         firstJSChunk.filename!,
