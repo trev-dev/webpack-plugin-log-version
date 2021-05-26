@@ -17,7 +17,28 @@ const getExtension = (model: PluginModel): string | undefined => {
   return model.extension
 }
 
-const sanitize = (content: string) => {
+const getTemplate = (model: PluginModel) => {
+  const { options } = model
+  if (options.template !== undefined) return model
+
+  let template = '%c<%= name %> - <%= version %>'
+
+  if (options.git) {
+    template += '\\nCommit <%= commit %> on branch <%= branch %>'
+  }
+
+  template += '\\nDate: <%= new Date.toDateString() %>'
+  if (options.comment !== '') {
+    template += '\\nComment: <%= comment %>'
+  }
+  model.options = {
+    ...options,
+    template
+  }
+  return model
+}
+
+const escapeQuotes = (content: string) => {
   return content.replace(/"/g, '\\"')
 }
 
