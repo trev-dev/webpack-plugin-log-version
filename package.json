@@ -1,9 +1,11 @@
 {
-  "name": "webpack-prepend-version",
+  "name": "webpack-log-version",
   "version": "0.1.0",
-  "description": "A plugin that injects a version stamp into the top of a project's bundled assets",
-  "main": "index.js",
+  "description": "A webpack plugin that injects a console log statement at the top of a production bundle that includes the project version & git info",
+  "main": "lib/index.js",
   "scripts": {
+    "start": "tsc --pretty --watch",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -12,6 +14,13 @@
     "versioning",
     "injector"
   ],
-  "author": "Trevor Richards",
-  "license": "GPL-3.0-or-later"
+  "author": "Trevor Richards <trev@trevdev.ca>",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "webpack": "^5.37"
+  }
 }
