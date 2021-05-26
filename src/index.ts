@@ -6,7 +6,6 @@ import { PluginModel, PluginOptions } from './types/plugin'
 class LogVersionPlugin {
   defaultModel: PluginModel = {
     options: {
-      template: 'Lets try to "break this"'
     }
   }
   model: PluginModel
