@@ -1,5 +1,5 @@
-import { PluginModel, PluginOptions } from './types/plugin'
-import { extname } from 'path'
+import { PluginModel } from '../types/plugin'
+import { extname, resolve } from 'path'
 import { Chunk } from 'webpack'
 
 const getExtension = (model: PluginModel): string | undefined => {
@@ -53,14 +53,14 @@ const wrapConsoleLog = (model: PluginModel) => {
 const generateLogger = 
   async (model: PluginModel): Promise<string | undefined> => {
     const { extension } = model
-    const { template } = model.options
 
-    switch (extension) {
-      case 'js':
-        return wrapConsoleLog(template!)
-      default:
-        return model.content 
+    if (extension === 'js') {
+      const PWD = process.cwd()
+      const pkg = require(resolve(PWD, 'package.json')) 
+      return wrapConsoleLog(getTemplate(model))
     }
+
+    return
   }
 
 export const prependChunk = (model: PluginModel) => async (chunk: Chunk) => {
@@ -68,8 +68,14 @@ export const prependChunk = (model: PluginModel) => async (chunk: Chunk) => {
     const [firstFile] = chunk.files
     model.filename = firstFile
     model.extension = getExtension(model)
+
+    try {
     model.content = await generateLogger(model)
     return model
+    }
+    catch (error) {
+      console.error(error)
+    }
   }
   return model
 }
