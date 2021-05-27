@@ -130,3 +130,5 @@ You may change up the template or re-arrange the output as you see fit with the 
 ## Getting Help & Contributing
 
 Please leave an issue and explain the problem. Be as detailed as possible. If you wish to contribute feel free to submit pull requests and issues with your features and requests.
+
+If you wish to contribute pull requests, please use the contrib branch
