@@ -1,6 +1,6 @@
 {
   "name": "webpack-plugin-log-version",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A webpack plugin that prepends a javacript bundle with project version information",
   "main": "lib/index.js",
   "scripts": {
