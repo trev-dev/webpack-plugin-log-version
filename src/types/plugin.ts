@@ -1,11 +1,11 @@
 export declare type PluginOptions = {
   color: string
-  name?: string
   comment: string
   git: boolean
   global: boolean
   globalName?: string
   log: boolean
+  name?: string
   template?: string
 }
 
