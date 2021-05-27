@@ -53,6 +53,7 @@ This guide assumes you already know how to setup a webpack configuration.
     }
     ```
 3. Run a build of your project and load it in your browser. You should see an output log with the default settings:
+
     ![Example image of the plugin's default settings](./example.png)
 
 <a id="configuration"></a>
