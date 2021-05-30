@@ -52,10 +52,12 @@ const renderTemplate = async (
       if (await gitAvailable()) {
         const branch = await gitCommand('git branch --show-current')
         const commit = await gitCommand('git rev-parse HEAD')
+        const dirty = await gitCommand('git status --porcelain')
         templateVars = {
           ...templateVars,
           branch: branch.trim(),
-          commit: commit.trim().slice(0, 7)
+          commit: commit.trim().slice(0, 7),
+          dirty: dirty.trim() !== ''
         }
       }
     } catch (e) {

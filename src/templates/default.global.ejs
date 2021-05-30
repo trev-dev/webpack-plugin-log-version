@@ -4,6 +4,9 @@
 	date: '<%= date %>',
 	<% if (git) { %>
 	branch: '<%= branch %>',
+	<% if (dirty) { %>
+	dirty: true,
+	<% } %>
 	commit: '<%= commit %>',
 	<% } %>
 	<% if (comment !== '') { %>

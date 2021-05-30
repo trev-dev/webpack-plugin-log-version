@@ -19,6 +19,7 @@ export declare interface PluginModel {
 export declare interface TemplateVariables extends PluginOptions {
   branch?: string,
   commit?: string,
+  dirty?: boolean,
   date: string,
   name: string,
   version: string
