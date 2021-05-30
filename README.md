@@ -105,7 +105,7 @@ You may change up the template or re-arrange the output as you see fit with the 
     new LogVersionPlugin({
         log: false,
         global: true,
-        globalName: myAwesomeLog
+        globalName: 'myAwesomeLog'
     })
     ```
     This will generate: `window.myAwesomeLog = {name: package.name, version: package.version, ...etc}` and prevent logging the version out loud in the console
@@ -121,7 +121,7 @@ You may change up the template or re-arrange the output as you see fit with the 
 3. Display the version information in hot pink & add a comment to it
     ```javascript
     new LogVersionPlugin({
-        color: hotpink,
+        color: 'hotpink',
         comment: "This bundle is lit! 🔥"
     })
     ```
