@@ -1,4 +1,5 @@
 const { src, dest, watch, task, series } = require('gulp')
+const del = require('del')
 
 function moveTemplates() {
 	return src('./src/templates/**/*.ejs')
@@ -9,5 +10,9 @@ function watchTemplates() {
   watch('./src/templates/**/*.ejs', moveTemplates)
 }
 
-task('default', moveTemplates)
+function clean() {
+  return del(['lib/**', '!lib'], {force: true})
+}
+
+task('default', series(clean, moveTemplates))
 task('watch', series(moveTemplates, watchTemplates))
