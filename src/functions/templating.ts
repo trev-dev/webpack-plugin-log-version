@@ -28,7 +28,7 @@ const wrapConsoleLog = (model: PluginModel, template: RenderedTemplate) => {
 }
 
 const wrapInGlobal = (model: PluginModel, template: RenderedTemplate) => {
-  const { globalName, color } = model.options
+  const { globalName } = model.options
   const { name, content } = template
   const globalProp = globalName !== undefined ? globalName : name
   return `window['${globalProp}'] = ${content.global};`
@@ -112,7 +112,6 @@ const generateLogger =
     let content = ''
     if (extension === 'js') {
       if (options.global) {
-        const globalTemplate = 
         content += wrapInGlobal(model, template)
       }
       if (options.log) {
