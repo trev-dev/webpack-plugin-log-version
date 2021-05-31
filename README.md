@@ -66,6 +66,7 @@ The configuration options and their defaults are as follows:
 declare type PluginOptions = {
   color: string
   comment: string
+  deployedBy: boolean | string,
   git: boolean
   global: boolean
   globalName?: string
@@ -76,6 +77,7 @@ declare type PluginOptions = {
 ```
 * `color`: Choose a different color for the console.log output. Can be any browser console compatible keyword or HEX value.
 * `comment`: Add an optional comment to the end of your log
+* `deployedBy`: Include who built/deployed the bundle. This can be set to a string or true/false. If set to `true` along with `git: true`, the local git config `user.name` is used. Default : `false`
 * `git`: Enable git features and the project's branch and commit to the log Default: `true`
 *  `global`: Add an object to the global (window) context that contains the log information. Default: `false`
 * `globalName`: change the key for the `global` object. Default: `package.name`

@@ -10,7 +10,8 @@ class LogVersionPlugin {
       log: true,
       global: false,
       comment: '',
-      color: '#3BBFBF'
+      color: '#3BBFBF',
+      deployedBy: false
     }
   }
   model: PluginModel

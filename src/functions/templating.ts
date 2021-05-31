@@ -53,11 +53,16 @@ const renderTemplate = async (
         const branch = await gitCommand('git branch --show-current')
         const commit = await gitCommand('git rev-parse HEAD')
         const dirty = await gitCommand('git status --porcelain')
+        const deployedBy = options.deployedBy === true ? await gitCommand(
+          'git config user.name'
+        ) : options.deployedBy;
+
         templateVars = {
           ...templateVars,
           branch: branch.trim(),
           commit: commit.trim().slice(0, 7),
-          dirty: dirty.trim() !== ''
+          dirty: dirty.trim() !== '',
+          deployedBy: deployedBy !== false ? deployedBy.trim() : deployedBy
         }
       }
     } catch (e) {

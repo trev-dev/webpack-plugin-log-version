@@ -9,6 +9,9 @@
 	<% } %>
 	commit: '<%= commit %>',
 	<% } %>
+	<% if (deployedBy) { %>
+	deployedBy: '<%= deployedBy %>',
+	<% } %>
 	<% if (comment !== '') { %>
 	comment: '<%= comment %>'
 	<% } %> 

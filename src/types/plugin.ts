@@ -1,6 +1,7 @@
 export declare type PluginOptions = {
   color: string
   comment: string
+  deployedBy: boolean | string,
   git: boolean
   global: boolean
   globalName?: string
