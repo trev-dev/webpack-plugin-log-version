@@ -3,6 +3,7 @@ import { extname, resolve, join } from 'path'
 import { gitAvailable, gitCommand } from './git'
 import { Chunk } from 'webpack'
 import { IPackageJson } from '../types/package.json'
+import { PluginError } from '../classes'
 import chalk from 'chalk'
 import ejs from 'ejs'
 
@@ -71,6 +72,13 @@ const renderTemplate = async (
     }
   }
 
+  if (templateVars.deployedBy === true) {
+    throw new PluginError(
+      'deployedBy was set to true while git was set to '+ 
+      'false.\nUse a string when git is disabled.\n'
+    )
+  }
+
   const defaultLog = join(
     resolve(__dirname, '../templates', 'default.ejs')
   )
@@ -132,7 +140,8 @@ export const prependChunk = (model: PluginModel) => async (chunk: Chunk) => {
       return model
     }
     catch (error) {
-      console.error(error)
+      console.error(chalk.redBright(error))
+      return model
     }
   }
   return model
