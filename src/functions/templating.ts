@@ -7,19 +7,16 @@ import { PluginError } from '../classes'
 import chalk from 'chalk'
 import ejs from 'ejs'
 
-const getExtension = (model: PluginModel): string | undefined => {
-  const { filename } = model
-  if (filename === undefined) return model.extension
+const getExtension = (filename: string): string | undefined => {
+  if (filename === undefined) return
 
-    const fullExtension = extname(filename.toLowerCase())
+  const fullExtension = extname(filename.toLowerCase())
   const matches = fullExtension.match(/\.(\w+)\??/)
 
   if (matches !== null) {
     const [_, filetype] = matches
     return filetype
   }
-
-  return model.extension
 }
 
 const wrapConsoleLog = (model: PluginModel, template: RenderedTemplate) => {
@@ -131,13 +128,25 @@ const generateLogger =
 
 export const prependChunk = (model: PluginModel) => async (chunk: Chunk) => {
   if (chunk.canBeInitial()) {
-    const [firstFile] = chunk.files
-    model.filename = firstFile
-    model.extension = getExtension(model)
+    let filename, extension
+    const chunks = Array.from(chunk.files)
+
+    for (let i = 0; i < chunks.length; i++) {
+      extension = getExtension(chunks[i])
+      if (extension === 'js') filename = chunks[i]
+    }
+
+    if (filename === undefined) return model
+
+    let updatedModel = {
+      ...model,
+      filename,
+      extension
+    }
 
     try {
-      model.content = await generateLogger(model)
-      return model
+      updatedModel.content = await generateLogger(updatedModel)
+      return updatedModel
     }
     catch (error) {
       console.error(chalk.redBright(error))
