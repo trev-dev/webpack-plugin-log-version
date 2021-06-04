@@ -10,6 +10,7 @@ A simple plugin for logging your project build version into the browser console.
     - [Configuration](#configuration)
 - [Examples](#examples)
 - [Getting Help & Contributing](#getting-help--contributing)
+- [Support My Work](#support-my-work)
 
 <!-- /MarkdownTOC -->
 
@@ -135,3 +136,8 @@ You may change up the template or re-arrange the output as you see fit with the 
 Please leave an issue and explain the problem. Be as detailed as possible. If you wish to contribute feel free to submit pull requests and issues with your features and requests.
 
 If you wish to contribute pull requests, please use the contrib branch
+
+<a id="support-my-work"></a>
+## Support My Work
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y34UWHH) [![Support me on Liberpay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/trev.dev/donate)
